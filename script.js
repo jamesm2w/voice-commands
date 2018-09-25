@@ -31,8 +31,8 @@ recognition.onresult = (e) => {
   
   let transcript = e.results[current][0].transcript;
   
-  if (transcript == "open menu") {
-    alert("command recognised")
+  if (transcript == "activate secret") {
+    document.querySelector("body").style.backgroundColor = "lightblue";
   }
   
   capturedText += (transcript + " ");
