@@ -15,6 +15,9 @@ recognition.onstart = () => {
 }
 
 recognition.onspeechend = () => {
+  document.getElementById("listenBtn").classList.remove("started");
+    
+  document.getElementById("listenBtn").innerHTML = "Listen"
   instructions.innerHTML = "<span class='important'>Speech detection stopped.</span>"
 }
 
@@ -28,6 +31,34 @@ recognition.onresult = (e) => {
   
   let transcript = e.results[current][0].transcript;
   
-  capturedText += transcript;
+  if (transcript == "open menu") {
+    alert("command recognised")
+  }
+  
+  capturedText += (transcript + " ");
   document.getElementById("text-area").value = capturedText;
 }
+
+document.getElementById("listenBtn").addEventListener("click", (e) => {
+  if (e.target.classList.contains("started")) {
+    
+    recognition.stop();
+  } else {
+    e.target.classList.add("started");
+    
+    e.target.innerHTML = "Stop Listening"
+    recognition.start();
+  }
+});
+
+document.getElementById("speakBtn").addEventListener("click", (e) => {
+  var speech = new SpeechSynthesisUtterance();
+
+  // Set the text and voice attributes.
+  speech.text = capturedText;
+  speech.volume = 1;
+  speech.rate = 1;
+  speech.pitch = 1;
+
+  window.speechSynthesis.speak(speech);
+});
