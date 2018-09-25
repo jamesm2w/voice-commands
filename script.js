@@ -1,5 +1,8 @@
-/* If you're feeling fancy you can add interactivity 
-    to your site with Javascript */
-
-// prints "hi" in the browser's dev tools console
-console.log('hi');
+try {
+  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var recognition = new SpeechRecognition();
+} catch (ex) {
+  console.error(ex);
+  alert("No Browser support for WebAPI");
+  document.getElementById("no-browser").classList.remove()
+}
