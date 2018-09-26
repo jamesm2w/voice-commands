@@ -32,16 +32,24 @@ recognition.onresult = (e) => {
   
   let transcript = e.results[current][0].transcript;
   
+  document.getElementById("text-area").value += ("You: " + transcript + "\n");
+  
   if (transcript == "hello there") {
     speak("general kenobi");
     
     document.querySelector("body").style.backgroundColor = "lightblue";
+    
   } else if (transcript == "good morning") {
     speak("hello how are you");
+    
+  } else if (transcript == "hello") {
+    speak("good morning");
+  } else {
+    capturedText += (transcript + " ");
+    
   }
   
-  capturedText += (transcript + " ");
-  document.getElementById("text-area").value = capturedText;
+  
 }
 
 document.getElementById("listenBtn").addEventListener("click", (e) => {
@@ -70,4 +78,6 @@ function speak (text) {
   speech.pitch = 1;
 
   window.speechSynthesis.speak(speech);
+  
+  document.getElementById("text-area").value += ("ME: " + speech + "\n");
 }
