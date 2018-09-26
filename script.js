@@ -44,12 +44,10 @@ recognition.onresult = (e) => {
     
   } else if (transcript == "hello") {
     speak("good morning");
+    
   } else {
     capturedText += (transcript + " ");
-    
   }
-  
-  
 }
 
 document.getElementById("listenBtn").addEventListener("click", (e) => {
@@ -79,5 +77,5 @@ function speak (text) {
 
   window.speechSynthesis.speak(speech);
   
-  document.getElementById("text-area").value += ("ME: " + speech + "\n");
+  document.getElementById("text-area").value += ("ME: " + text + "\n");
 }

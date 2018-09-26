@@ -21,7 +21,17 @@ h1 {
   font-size: 40px;
 }
 
+#app {
+  width: 50%;
+}
+
 #text-area {
-  width: 500px;
+  margin-top: 10px;
+  width: 96%;
   height: 300px;
+}
+
+#speakBtn, #listenBtn {
+  width: 48%;
+  display: inline-block;
 }
