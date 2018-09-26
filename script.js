@@ -1,6 +1,7 @@
 try {
   var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   var recognition = new SpeechRecognition();
+
   var instructions = document.getElementById("instructions");
   var capturedText = "";
 } catch (ex) { // It is fairly experimental technology, if no support, hide the app.
@@ -31,8 +32,18 @@ recognition.onresult = (e) => {
   
   let transcript = e.results[current][0].transcript;
   
-  if (transcript == "activate secret") {
+  if (transcript == "hello there") {
+    var speech = new SpeechSynthesisUtterance();
+    
+    speech.text = "general kenobi";
+  speech.volume = 1;
+  speech.rate = 1;
+  speech.pitch = 1;
+
+  window.speechSynthesis.speak(speech);
+    
     document.querySelector("body").style.backgroundColor = "lightblue";
+    
   }
   
   capturedText += (transcript + " ");
