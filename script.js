@@ -33,17 +33,11 @@ recognition.onresult = (e) => {
   let transcript = e.results[current][0].transcript;
   
   if (transcript == "hello there") {
-    var speech = new SpeechSynthesisUtterance();
-    
-    speech.text = "general kenobi";
-  speech.volume = 1;
-  speech.rate = 1;
-  speech.pitch = 1;
-
-  window.speechSynthesis.speak(speech);
+    speak("general kenobi");
     
     document.querySelector("body").style.backgroundColor = "lightblue";
-    
+  } else if (transcript == "good morning") {
+    speak("hello how are you");
   }
   
   capturedText += (transcript + " ");
@@ -63,13 +57,17 @@ document.getElementById("listenBtn").addEventListener("click", (e) => {
 });
 
 document.getElementById("speakBtn").addEventListener("click", (e) => {
+  speak(capturedText);
+});
+
+function speak (text) {
   var speech = new SpeechSynthesisUtterance();
 
   // Set the text and voice attributes.
-  speech.text = capturedText;
+  speech.text = text;
   speech.volume = 1;
   speech.rate = 1;
   speech.pitch = 1;
 
   window.speechSynthesis.speak(speech);
-});
+}
