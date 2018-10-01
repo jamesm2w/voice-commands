@@ -42,9 +42,10 @@ recognition.onresult = (e) => {
   } else if (transcript == "good morning") {
     speak("hello how are you");
     
-  } else if (transcript == "hello") {
-    speak("good morning");
+  } else if (transcript.split(" ")[0] == "background") {
+    speak("Okay");
     
+    document.querySelector("body").style.backgroundColor = transcript.split(" ")[1];
   } else {
     capturedText += (transcript + " ");
   }
