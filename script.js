@@ -25,6 +25,8 @@ recognition.onspeechend = () => {
 recognition.onerror = (e) => {
   console.error(e);
   (e.error == "no-speech") ? instructions.innerHTML = "No speech detected." : instructions.innerHTML = "Error occured";
+  document.getElementById("listenBtn").classList.remove("started");
+  document.getElementById("listenBtn").innerHTML = "Listen";
 }
 
 recognition.onresult = (e) => {
