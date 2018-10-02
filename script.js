@@ -44,8 +44,9 @@ recognition.onresult = (e) => {
     
   } else if (transcript.split(" ")[0] == "background") {
     speak("Okay");
-    
-    document.querySelector("body").style.backgroundColor = transcript.split(" ")[1];
+    let colour = transcript.split(" ").slice(1, transcript.split(" ").length + 1).join("");
+    document.querySelector("body").style.backgroundColor = colour;
+    console.log(colour);
   } else {
     capturedText += (transcript + " ");
   }
